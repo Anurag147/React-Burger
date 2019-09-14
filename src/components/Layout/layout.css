@@ -1,0 +1,14 @@
+.Content{
+    margin-top: 70px;
+}
+.Header{
+    height: 30px;
+    width: 100%;
+    background-color: chartreuse;
+    text-align: center;
+    color: brown;
+    font-size: larger;
+    font-weight: bolder;
+    font-style: italic;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
