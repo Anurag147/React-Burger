@@ -3,6 +3,7 @@ import Button from '../../../components/Layout/UI/Button/Button';
 import Classes from './ContactData.css';
 import axios from '../../../axios-orders';
 import Input from '../../../components/Layout/UI/Input/Input';
+import { connect } from 'react-redux';
 
 class ContactData extends Component{
 
@@ -90,7 +91,6 @@ class ContactData extends Component{
             },
         loading:false,
         formvalid:false,
-        totalPrice:0
     }
 
     orderHandler = (event) => {
@@ -103,7 +103,7 @@ class ContactData extends Component{
         }
 
         const order = {
-            ingredients:this.props.ingredients,
+            ingredients:this.props.ings,
             price: this.props.price,
             orderData:formData
         }
@@ -173,4 +173,10 @@ class ContactData extends Component{
     }x
 }
 
-export default ContactData;
+const mapStateToProps = (state)=>{
+    return {
+        ings:state.ingredients,
+        price:state.totalPrice
+    };
+};
+export default connect(mapStateToProps)(ContactData);
