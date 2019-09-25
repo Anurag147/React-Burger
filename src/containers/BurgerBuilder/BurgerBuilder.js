@@ -7,7 +7,7 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import axios from '../../axios-orders';
 import Spinner from '../../components/Layout/UI/Spinner/Spinner';
 import {connect} from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import * as burgerBuilderActions from '../../store/actions/index';
 
 class BurgerBuilder extends Component{
 
@@ -21,10 +21,7 @@ class BurgerBuilder extends Component{
     }
 
     componentDidMount() {
-        /*axios.get('/ingredients.json')
-        .then(response => {
-                this.setState({ingredients:response.data});
-        })*/
+        this.props.onInitIngredients(); //Initialise ingredients by dispatching actions
     }
 
     updatePurchaseState = (ingredients) => {   
@@ -51,6 +48,7 @@ class BurgerBuilder extends Component{
     }
 
     purchaseContinueHandler = () => { 
+        this.props.onInitPurchase();
         this.props.history.push('/checkout');
     }
 
@@ -99,17 +97,22 @@ class BurgerBuilder extends Component{
     }
 }
 
+//Used for mapping state to props in Redux
 const mapStateToProps = (state) =>{
     return {
-        ings: state.ingredients,
-        price: state.totalPrice
+        ings: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.totalPrice,
+        error:state.burgerBuilder.error
     };
 };
 
+//Used for dispatching actions which will eventually reach reducers for state update
 const mapDispatchToProps = (dispatch) => {
     return{
-        onIngredientAdded: (ingName)=> dispatch({type:actionTypes.ADD_INGREDIENT,ingredientName:ingName}),
-        onIngredientRemoved: (ingName)=> dispatch({type:actionTypes.REMOVE_INGREDIENT,ingredientName:ingName})
+        onIngredientAdded: (ingName)=> dispatch(burgerBuilderActions.addIngredient(ingName)),
+        onIngredientRemoved: (ingName)=> dispatch(burgerBuilderActions.removeIngredient(ingName)),
+        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients()),
+        onInitPurchase: () => dispatch(burgerBuilderActions.purchaseInit())
     };
 }
 export default connect(mapStateToProps,mapDispatchToProps)(BurgerBuilder);

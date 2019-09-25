@@ -5,11 +5,22 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import reducer from './store/reducer';
+import {createStore,applyMiddleware,compose,combineReducers} from 'redux';
+import burgerBuilderReducer from './store/reducers/burgerBuilder';
+import orderReducer from './store/reducers/order';
+import thunk from 'redux-thunk';
+
+//Create combined reducres 
+const rootReducer = combineReducers({
+    burgerBuilder:burgerBuilderReducer,
+    order:orderReducer
+});
+//Below code is used for using redux dev tools
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 //Create store for redux using reducer
-const store = createStore(reducer);
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+//applyMiddleware(thunk) is a middleware to use thunk as a middleware for asynchrounous processing on action creators
 
 const app = (
     <Provider store={store}>

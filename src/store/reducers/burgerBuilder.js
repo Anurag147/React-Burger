@@ -1,5 +1,4 @@
-import * as actionTypes from './actions';
-import { stat } from 'fs';
+import * as actionTypes from '../actions/actionTypes';
 
 const INGREDIENT_PRICES  = {
     salad:0.5,
@@ -9,16 +8,12 @@ const INGREDIENT_PRICES  = {
 }
 
 const initialState= {
-    ingredients:{
-        salad:0,
-        bacon:0,
-        cheese:0,
-        meat:0
-    },
-    totalPrice:4
+    ingredients:null,
+    totalPrice:1,
+    error:false
 };
 
-const reducuer = (state=initialState,action) =>{
+const reducer = (state=initialState,action) =>{
     if(action.type==actionTypes.ADD_INGREDIENT){
 
         //Below syntax is used for achieving immutability
@@ -32,7 +27,6 @@ const reducuer = (state=initialState,action) =>{
         }
     }
     if(action.type==actionTypes.REMOVE_INGREDIENT){
-
          //Below syntax is used for achieving immutability
          return{
             ...state,
@@ -43,7 +37,27 @@ const reducuer = (state=initialState,action) =>{
             totalPrice: state.totalPrice+INGREDIENT_PRICES[action.ingredientName]
         }
     }
+
+    //Reducer to set ingredients initially
+    if(action.type==actionTypes.SET_INGREDIENTS){
+        //Below syntax is used for achieving immutability
+        return{
+           ...state,
+           ingredients:action.ingredients,
+           totalPrice:1,
+           error:false
+       }
+    }
+
+   //Reducer to set error status
+   if(action.type==actionTypes.FETCH_INGREDIENTS_FAILED){
+        //Below syntax is used for achieving immutability
+        return{
+        ...state,
+        error:true
+    }
+   }
     return state;
 };
 
-export default reducuer;
+export default reducer;
