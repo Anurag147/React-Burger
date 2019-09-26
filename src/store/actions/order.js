@@ -22,11 +22,11 @@ export const purchaseBurgerStart = (orderData) => {
     };
 }
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData,token) => {
     purchaseBurgerStart();
     return (dispatch) => {
         //Post Call
-        axios.post('/orders.json',orderData)
+        axios.post('/orders.json?auth='+token,orderData)
         .then(response=>{
             alert('Order Placed Successfully');
             dispatch(purchaseBurgerSuccess(response.data.name,orderData))
@@ -64,10 +64,10 @@ export const fetchOrdersStart = () => {
 }
 
 //Async code to call database using redux thunk
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
     return (dispatch)=>{
         dispatch(fetchOrdersStart());
-        axios.get('/orders.json')
+        axios.get('/orders.json?auth='+token)
         .then(res=>{
             const fetchedOrders = [];
             for(let key in res.data){

@@ -13,7 +13,7 @@ class Checkout extends Component{
     }
   
     render(){
-        const purchaseRedirect=this.props.purchased?<Redirect to="/"/>:null
+        const purchaseRedirect=this.props.purchased?<Redirect to="/burger"/>:null
         return(
             <div>
                 {purchaseRedirect}
