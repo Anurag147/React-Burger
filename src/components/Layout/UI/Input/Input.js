@@ -8,7 +8,7 @@ const input = (props) => {
             classCss = Classes.InputElement
         }
         else{
-            classCss= Classes.InputElementError
+            classCss= Classes.InputElement
         }
 
     switch(props.elementtype){
