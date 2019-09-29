@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
 import Order from '../../components/Order/Order';
-import axios from '../../axios-orders';
 import {connect} from 'react-redux';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/Layout/UI/Spinner/Spinner';

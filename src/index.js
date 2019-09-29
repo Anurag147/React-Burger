@@ -17,8 +17,9 @@ const rootReducer = combineReducers({
     order:orderReducer,
     auth:authReducer
 });
+
 //Below code is used for using redux dev tools
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__|| compose;
 
 //Create store for redux using reducer
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));

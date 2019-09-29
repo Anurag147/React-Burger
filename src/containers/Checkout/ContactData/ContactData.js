@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import Button from '../../../components/Layout/UI/Button/Button';
 import Classes from './ContactData.css';
-import axios from '../../../axios-orders';
 import Input from '../../../components/Layout/UI/Input/Input';
 import { connect } from 'react-redux';
 import * as burgerBuilderActions from '../../../store/actions/index';
@@ -116,7 +115,7 @@ class ContactData extends Component{
     checkValidity(value,rules){
      let isValid=true;
      if(rules.required){
-         isValid = value.trim()!='' && isValid;
+         isValid = value.trim()!=='' && isValid;
      }
      return isValid;
     }

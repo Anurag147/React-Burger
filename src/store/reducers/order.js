@@ -8,14 +8,14 @@ const initialState= {
 
 const reducer = (state=initialState,action) =>{
 
-    if(action.type==actionTypes.PURCHASE_BURGER_START){
+    if(action.type===actionTypes.PURCHASE_BURGER_START){
         return {
             ...state,
             loading:true
         };
     }
 
-    if(action.type==actionTypes.PURCHASE_BURGER_SUCCESS){
+    if(action.type===actionTypes.PURCHASE_BURGER_SUCCESS){
         const newOrder = {
             ...action.OrderData,
             id:action.orderId
@@ -28,21 +28,21 @@ const reducer = (state=initialState,action) =>{
         };
     }
 
-    if(action.type==actionTypes.PURCHASE_BURGER_FAIL){
+    if(action.type===actionTypes.PURCHASE_BURGER_FAIL){
         return {
             ...state,
             loading:false
         };
     }
 
-    if(action.type==actionTypes.PURCHASE_INIT){
+    if(action.type===actionTypes.PURCHASE_INIT){
         return {
             ...state,
             purchased:false
         };
     }
 
-    if(action.type==actionTypes.FETCH_ORDERS_START){
+    if(action.type===actionTypes.FETCH_ORDERS_START){
         return {
             ...state,
             loading:true
@@ -50,14 +50,14 @@ const reducer = (state=initialState,action) =>{
     }
 
 
-    if(action.type==actionTypes.FETCH_ORDERS_FAIL){
+    if(action.type===actionTypes.FETCH_ORDERS_FAIL){
         return {
             ...state,
             loading:false
         };
     }
 
-    if(action.type==actionTypes.FETCH_ORDERS_SUCCESS){
+    if(action.type===actionTypes.FETCH_ORDERS_SUCCESS){
         return {
             ...state,
             orders:action.orders,

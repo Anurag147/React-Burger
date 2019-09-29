@@ -43,7 +43,7 @@ class Auth extends Component {
     checkValidity(value,rules){
         let isValid=true;
         if(rules.required){
-            isValid = value.trim()!='' && isValid;
+            isValid = value.trim()!=='' && isValid;
         }
         return isValid;
        }
@@ -131,7 +131,7 @@ const mapStateToProps = (state) => {
     return {
         loading:state.auth.loading,
         error:state.auth.error,
-        isAuthenticated: state.auth.token!==null
+        isAuthenticated: state.auth.token !== null
     };
 };
 

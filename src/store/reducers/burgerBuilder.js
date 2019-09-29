@@ -14,7 +14,7 @@ const initialState= {
 };
 
 const reducer = (state=initialState,action) =>{
-    if(action.type==actionTypes.ADD_INGREDIENT){
+    if(action.type===actionTypes.ADD_INGREDIENT){
 
         //Below syntax is used for achieving immutability
         return{
@@ -26,7 +26,7 @@ const reducer = (state=initialState,action) =>{
             totalPrice: state.totalPrice+INGREDIENT_PRICES[action.ingredientName]
         }
     }
-    if(action.type==actionTypes.REMOVE_INGREDIENT){
+    if(action.type===actionTypes.REMOVE_INGREDIENT){
          //Below syntax is used for achieving immutability
          return{
             ...state,
@@ -39,7 +39,7 @@ const reducer = (state=initialState,action) =>{
     }
 
     //Reducer to set ingredients initially
-    if(action.type==actionTypes.SET_INGREDIENTS){
+    if(action.type===actionTypes.SET_INGREDIENTS){
         //Below syntax is used for achieving immutability
         return{
            ...state,
@@ -50,7 +50,7 @@ const reducer = (state=initialState,action) =>{
     }
 
    //Reducer to set error status
-   if(action.type==actionTypes.FETCH_INGREDIENTS_FAILED){
+   if(action.type===actionTypes.FETCH_INGREDIENTS_FAILED){
         //Below syntax is used for achieving immutability
         return{
         ...state,
